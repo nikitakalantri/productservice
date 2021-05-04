@@ -24,9 +24,9 @@ public class TradeController {
 	private TradeService tradeService;
 	
 	@PostMapping(value = "/trades")
-	public ResponseEntity<Void> insertTrade(@Valid @RequestBody Trade requestedTrade) {
-		System.out.println("Request accepted for adding trade - "+ requestedTrade);
-		tradeService.insertTrade(requestedTrade);
+	public ResponseEntity<Void> insertTrade(@Valid @RequestBody Trade tradeRequest) {
+		System.out.println("Request accepted for adding trade - "+ tradeRequest);
+		tradeService.insertTrade(tradeRequest);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 

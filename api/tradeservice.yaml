@@ -1,0 +1,110 @@
+swagger: '2.0'
+info:
+  description: >-
+    The Trade Service API  provides a means to store trades and get relevent information about the trades.Trade Service provides way of transmission of trades<br>
+  version: '1.0'
+  x-released: yes
+  x-visibility: internal
+  title: Trade Service
+basePath: /api/tradeservice
+schemes:
+  - http
+tags:
+  - name: Trade Service
+    description: Trade Service Controller
+    
+paths:
+  '/trades':
+    get:
+      summary: fetch trades in the store
+      produces:
+        - application/json      
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TradeResponse'
+    post:
+      summary: insert trade in the store
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: tradeRequest
+          description: tradeRequest - Trade Request in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/Trade'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+  
+definitions:
+  Trade:
+    type: object
+    required:
+    - "tradeId"
+    - "version"
+    - "counterPartyId"
+    - "bookId"
+    - "maturityDate"
+    properties:
+      tradeId:
+        type: string
+        example: "T1"
+        description: tradeId - Id for the trade to be added in the store.
+      version:
+        type: integer
+        description: version of the trade to be added.
+      counterPartyId:
+        description: counterPartyId.
+        type: "string"
+        example: "CP-1"
+      bookId:
+        type: string
+        description: book id of trade
+        example: "B1"
+      maturityDate:
+        type: string
+        format: date
+        example: "2021-05-20"
+        description: maturity date for the trade
+  
+  TradeResponse:
+    type: object
+    properties:
+      tradeId:
+        type: string
+        example: "T1"
+        description: tradeId - Id for the trade to be added in the store.
+      version:
+        type: integer
+        description: version of the trade to be added.
+      counterPartyId:
+        description: counterPartyId.
+        type: "string"
+        example: "CP-1"
+      bookId:
+        type: string
+        description: book id of trade
+        example: "B1"
+      createdDate:
+        type: string
+        format: date
+        example: "2021-05-19"
+        description: maturity date for the trade
+      maturityDate:
+        type: string
+        format: date
+        example: "2021-05-20"
+        description: maturity date for the trade
+      expired:
+        type: string
+        example: "N"
+        description: informs if the trade is expired

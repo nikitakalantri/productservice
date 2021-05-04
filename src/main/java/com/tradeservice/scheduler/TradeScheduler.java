@@ -14,7 +14,7 @@ public class TradeScheduler {
 	@Autowired
 	private TradeService tradeStoreService;
 	
-	@Scheduled(initialDelay = 1000, fixedRate = 10000)
+	@Scheduled(initialDelay = 1000, fixedRate = 300000)
 	public void updateTradeWithExpiredDates() {
 		System.out.println("Scheduler triggered at - "+ Instant.now());
 		tradeStoreService.updateTradeWithExpiredDates();
