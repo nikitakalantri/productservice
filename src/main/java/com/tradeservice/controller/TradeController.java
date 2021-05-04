@@ -21,18 +21,18 @@ import com.tradeservice.service.TradeService;
 public class TradeController {
 
 	@Autowired
-	private TradeService tradeStoreService;
+	private TradeService tradeService;
 	
 	@PostMapping(value = "/trades")
 	public ResponseEntity<Void> insertTrade(@Valid @RequestBody Trade requestedTrade) {
 		System.out.println("Request accepted for adding trade - "+ requestedTrade);
-		tradeStoreService.insertTrade(requestedTrade);
+		tradeService.insertTrade(requestedTrade);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
 	@GetMapping(value = "/trades")
 	public ResponseEntity<List<Trade>> getAllTrades(){
-		return new ResponseEntity<List<Trade>>(tradeStoreService.getAllTrades(), HttpStatus.OK);
+		return new ResponseEntity<List<Trade>>(tradeService.getAllTrades(), HttpStatus.OK);
 	}
 	
 }

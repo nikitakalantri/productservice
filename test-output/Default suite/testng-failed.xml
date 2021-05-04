@@ -5,6 +5,7 @@
     <classes>
       <class name="com.tradeservice.controller.TradeControllerTest">
         <methods>
+          <include name="setup"/>
           <include name="shouldCreateTrade"/>
         </methods>
       </class> <!-- com.tradeservice.controller.TradeControllerTest -->
