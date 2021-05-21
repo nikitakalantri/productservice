@@ -1,4 +1,4 @@
-package com.tradeservice;
+package com.productservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class TradeStorageApplication {
+public class ProductServiceApplication {
 
 	public static void main(String[] args) {
-		System.out.println("Trade Store");
-		SpringApplication.run(TradeStorageApplication.class, args);
+		SpringApplication.run(ProductServiceApplication.class, args);
 	}
 }

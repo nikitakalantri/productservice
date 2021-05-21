@@ -1,0 +1,110 @@
+swagger: '2.0'
+info:
+  description: >-
+    The Product Service API  provides a means for seller to add products and get relevent information about the products.<br>
+  version: '1.0'
+  x-released: yes
+  x-visibility: internal
+  title: Product Service
+basePath: /api/productservice
+schemes:
+  - http
+tags:
+  - name: Product Service
+    description: Product Service Controller
+    
+paths:
+  '/products':
+    get:
+      summary: fetch products
+      produces:
+        - application/json      
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+    post:
+      summary: add product
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: product
+          description: product - Product in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/Product'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+  '/products/{productId}':
+    get:
+      summary: fetch product details
+      produces:
+        - application/json   
+      parameters:
+        - name: productId
+          in: path
+          description: productId - Unique identifier of product.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+  'products/{productId}':
+    patch:
+      summary: update product quantity
+      produces:
+        - application/json
+      parameters:
+        - name: productId
+          in: path
+          description: productId - Unique identifier of product.
+          required: true
+          type: string
+        - name: quantity
+          in: query
+          required: true
+          type: integer
+        - name: operation
+          in: query
+          required: true
+          description: operation = "ADD"
+          type: string
+definitions:
+  Product:
+    type: object
+    required:
+    - "productName"
+    - "availableQuantity"
+    - "price"
+    - "sellerId"
+    properties:
+      productName:
+        type: string
+        example: "12"
+        description: Name of the product to be added.
+      availableQuantity:
+        type: integer
+        description: quantity of the product to be added.
+      price:
+        description: counterPartyId.
+        type: "integer"
+        example: 100
+      sellerId:
+        type: string
+        description: Id of the Seller adding the product.
+        example: "S1"
+  
+ 
